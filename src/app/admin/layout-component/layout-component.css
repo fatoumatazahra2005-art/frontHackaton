@@ -1,0 +1,52 @@
+.admin-container {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  background: #1e293b;
+  color: white;
+  padding: 20px;
+}
+
+.logo {
+  margin-bottom: 30px;
+}
+
+.sidebar nav a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
+}
+
+.sidebar nav a:hover,
+.active {
+  color: #38bdf8;
+  font-weight: bold;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAVBAR */
+.navbar {
+  background: #f1f5f9;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* CONTENT */
+.content {
+  padding: 20px;
+  background: #f8fafc;
+  flex: 1;
+}

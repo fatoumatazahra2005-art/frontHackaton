@@ -1,0 +1,48 @@
+<div class="register-page">
+
+  <div class="register-card">
+
+    <h2>Inscription</h2>
+    <p class="subtitle">Créez votre compte hackathon</p>
+
+    <form (ngSubmit)="register()">
+
+      <div class="form-group">
+        <label for="username">Nom d'utilisateur</label>
+        <input
+          id="username"
+          type="text"
+          placeholder="Choisissez un nom d'utilisateur"
+          [(ngModel)]="user.username"
+          name="username"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input
+          id="password"
+          type="password"
+          placeholder="••••••••"
+          [(ngModel)]="user.password"
+          name="password"
+        >
+      </div>
+
+      @if (errorMessage) {
+        <p class="error-message">{{ errorMessage }}</p>
+      }
+
+      <button type="submit" class="submit-btn">
+        Créer un compte
+      </button>
+
+    </form>
+
+    <p class="login-link">
+      Déjà un compte ? <a routerLink="/login">Se connecter</a>
+    </p>
+
+  </div>
+
+</div>

@@ -1,0 +1,42 @@
+<h1>Dashboard</h1>
+
+@if (isLoading()) {
+  <p>Chargement…</p>
+} @else {
+
+  @if (errorMessage()) {
+    <p class="error-message">{{ errorMessage() }}</p>
+  }
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>Utilisateurs</h3>
+      <p>{{ stats().users }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Equipes</h3>
+      <p>{{ stats().teams }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Projets</h3>
+      <p>{{ stats().projects }}</p>
+    </div>
+
+  </div>
+
+  <h2>Participants récents</h2>
+
+  @if (recentParticipants().length === 0) {
+    <p>Aucun participant pour l'instant.</p>
+  } @else {
+    <ul class="recent-list">
+      @for (participant of recentParticipants(); track participant.id) {
+        <li>{{ participant.username }}</li>
+      }
+    </ul>
+  }
+
+}

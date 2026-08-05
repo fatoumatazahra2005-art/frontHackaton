@@ -1,0 +1,36 @@
+.dashboard{
+
+  padding:30px;
+
+}
+
+
+.cards{
+
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+
+}
+
+
+.card{
+
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 4px 12px #ddd;
+
+}
+
+
+button{
+
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:10px 20px;
+  border-radius:8px;
+  cursor:pointer;
+
+}

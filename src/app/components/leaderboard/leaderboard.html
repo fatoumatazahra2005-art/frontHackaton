@@ -1,0 +1,49 @@
+<div class="leaderboard-container">
+
+  <h2><i class="bi bi-trophy-fill"></i> Classement</h2>
+
+  @if (loading()) {
+    <p>Chargement...</p>
+  } @else if (results().length === 0) {
+    <p>Aucun résultat pour le moment.</p>
+  } @else {
+
+    <!-- PODIUM TOP 3 -->
+    <div class="podium">
+      @for (team of podium(); track team.projectId; let i = $index) {
+        <div class="podium-place" [class]="'place-' + (i + 1)">
+          <div class="medal"><i class="bi" [class]="medal(i)"></i></div>
+          <div class="team-name">{{ team.teamName }}</div>
+          <div class="project-title">{{ team.projectTitle }}</div>
+          <div class="score">{{ team.averageScore | number:'1.0-2' }} / 20</div>
+        </div>
+      }
+    </div>
+
+
+    @if (rest().length > 0) {
+      <table class="rest-table">
+        <thead>
+        <tr>
+          <th>Rang</th>
+          <th>Équipe</th>
+          <th>Projet</th>
+          <th>Score</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (team of rest(); track team.projectId; let i = $index) {
+            <tr>
+              <td>{{ i + 4 }}</td>
+              <td>{{ team.teamName }}</td>
+              <td>{{ team.projectTitle }}</td>
+              <td>{{ team.averageScore | number:'1.0-2' }} / 20</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+
+  }
+
+</div>

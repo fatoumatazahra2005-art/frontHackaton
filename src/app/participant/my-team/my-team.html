@@ -1,0 +1,176 @@
+<div class="container mt-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-primary mb-0">Mon équipe</h2>
+    <a routerLink="/leaderboard" class="btn btn-outline-primary btn-sm">🏆 Voir classement</a>
+    <button class="btn btn-outline-secondary btn-sm" (click)="logout()">
+      Déconnexion
+    </button>
+  </div>
+
+  @if (loading()) {
+    <div class="text-center mt-5">
+      <div class="spinner-border"></div>
+      <p class="mt-2">Chargement...</p>
+    </div>
+  } @else {
+
+    @if (!team()) {
+
+      <!-- CREATE TEAM -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h5>Créer une équipe</h5>
+
+          <div class="input-group">
+            <input class="form-control" [(ngModel)]="newTeamName" placeholder="Nom de l'équipe">
+            <button class="btn btn-primary"
+                    (click)="createTeam()"
+                    [disabled]="!newTeamName.trim()">
+              Créer
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- JOIN TEAM -->
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5>Rejoindre une équipe</h5>
+
+          @if (allTeams().length === 0) {
+            <p class="text-muted">Aucune équipe disponible.</p>
+          } @else {
+            <div class="input-group">
+              <select class="form-select" [(ngModel)]="selectedTeamIdToJoin">
+                <option [ngValue]="null">Choisir une équipe</option>
+                @for (t of allTeams(); track t.id) {
+                  <option [ngValue]="t.id">{{ t.name }}</option>
+                }
+              </select>
+
+              <button class="btn btn-success"
+                      (click)="joinTeam()"
+                      [disabled]="selectedTeamIdToJoin == null">
+                Rejoindre
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+
+    } @else {
+
+      <!-- TEAM INFO -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h4 class="text-primary">{{ team()!.name }}</h4>
+          <p class="text-muted">Chef : {{ team()!.createdBy }}</p>
+
+          @if (isCreator()) {
+            <div class="input-group mb-2">
+              <input class="form-control" [(ngModel)]="editTeamName">
+              <button class="btn btn-warning"
+                      (click)="updateTeamName()"
+                      [disabled]="!editTeamName.trim()">
+                Modifier nom
+              </button>
+            </div>
+          }
+
+          <button class="btn btn-outline-danger" (click)="leaveTeam()">
+            Quitter l'équipe
+          </button>
+        </div>
+      </div>
+
+      <!-- MEMBERS -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h5>Membres</h5>
+
+          @for (member of members(); track member.id) {
+            <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+              <span>{{ member.username }}</span>
+
+              @if (isCreator() && member.username !== team()!.createdBy) {
+                <button class="btn btn-sm btn-danger"
+                        (click)="removeMember(member.username)">
+                  Retirer
+                </button>
+              }
+            </div>
+          } @empty {
+            <p class="text-muted">Aucun membre.</p>
+          }
+        </div>
+      </div>
+
+      <!-- PROJECT -->
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5>Projet</h5>
+
+          @if (project()) {
+
+            <div class="mb-2">
+              <input class="form-control mb-2"
+                     [(ngModel)]="project()!.title"
+                     [disabled]="!isCreator()" />
+
+              <textarea class="form-control mb-2"
+                        [(ngModel)]="project()!.description"
+                        [disabled]="!isCreator()"></textarea>
+
+              <input class="form-control mb-2"
+                     [(ngModel)]="project()!.githubLink"
+                     [disabled]="!isCreator()" />
+            </div>
+
+            @if (isCreator()) {
+              <button class="btn btn-warning me-2"
+                      (click)="updateProject(project()!)">
+                Modifier projet
+              </button>
+            }
+
+            @if (project()!.githubLink) {
+              <a class="btn btn-outline-dark btn-sm"
+                 [href]="project()!.githubLink"
+                 target="_blank">
+                Voir GitHub
+              </a>
+            }
+
+          } @else if (isCreator()) {
+
+            <input class="form-control mb-2"
+                   placeholder="Titre"
+                   [(ngModel)]="newProjectTitle">
+
+            <textarea class="form-control mb-2"
+                      placeholder="Description"
+                      [(ngModel)]="newProjectDescription"></textarea>
+
+            <input class="form-control mb-2"
+                   placeholder="GitHub"
+                   [(ngModel)]="newProjectGithubLink">
+
+            <button class="btn btn-success"
+                    (click)="createProject()"
+                    [disabled]="!newProjectTitle.trim()">
+              Créer projet
+            </button>
+
+          } @else {
+            <p class="text-muted">Aucun projet pour le moment.</p>
+          }
+
+        </div>
+      </div>
+
+    }
+
+  }
+
+</div>

@@ -1,12 +1,19 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterOutlet, RouterLink } from '@angular/router';
+import { AuthService } from './services/auth-service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('gestion-hackaton-frontend');
+
+  constructor(public authService: AuthService) {}
+
+  get showAdminNavbar(): boolean {
+    return this.authService.isAuthenticated() && this.authService.hasRole('ROLE_ADMIN');
+  }
 }

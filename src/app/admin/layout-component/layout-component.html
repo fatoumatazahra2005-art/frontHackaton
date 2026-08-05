@@ -1,0 +1,40 @@
+<div class="admin-container">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <h2 class="logo">Admin</h2>
+
+    <nav>
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/team" routerLinkActive="active">Teams</a>
+      <a routerLink="/project" routerLinkActive="active">Projects</a>
+      <a routerLink="/user" routerLinkActive="active">Users</a>
+
+    </nav>
+
+  </aside>
+
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+      <span>Bienvenue Admin</span>
+      <a routerLink="/leaderboard" routerLinkActive="active">Classement</a>
+      <button (click)="logout()">Logout</button>
+
+
+    </header>
+
+
+    <!-- CONTENT -->
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+</div>

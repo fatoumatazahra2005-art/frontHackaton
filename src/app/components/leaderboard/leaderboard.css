@@ -1,0 +1,116 @@
+.leaderboard-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  color: #1a1a2e;
+}
+
+.podium {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.podium-place {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 160px;
+}
+
+.place-1 {
+  order: 2;
+  transform: scale(1.12);
+  background: linear-gradient(180deg, #fff9e6, #ffffff);
+  border: 2px solid #ffd700;
+}
+
+.place-2 {
+  order: 1;
+  background: linear-gradient(180deg, #f5f5f5, #ffffff);
+  border: 2px solid #c0c0c0;
+}
+
+.place-3 {
+  order: 3;
+  background: linear-gradient(180deg, #fbe9dd, #ffffff);
+  border: 2px solid #cd7f32;
+}
+
+.medal {
+  font-size: 2.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.team-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #1a1a2e;
+}
+
+.project-title {
+  font-size: 0.85rem;
+  color: #777;
+  margin: 0.2rem 0 0.6rem;
+}
+
+.score {
+  font-weight: 700;
+  color: #1565c0;
+  font-size: 1.1rem;
+}
+
+.rest-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.rest-table th {
+  padding: 0.8rem 1.1rem;
+  text-align: left;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #555;
+  background-color: #f4f6f9;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.rest-table td {
+  padding: 0.8rem 1.1rem;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.rest-table td:first-child {
+  font-weight: 700;
+  color: #777;
+}
+.medal .bi {
+  font-size: 2.2rem;
+}
+
+.place-1 .medal .bi {
+  color: #ffd700;
+}
+
+.place-2 .medal .bi {
+  color: #c0c0c0;
+}
+
+.place-3 .medal .bi {
+  color: #cd7f32;
+}

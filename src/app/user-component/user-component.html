@@ -1,0 +1,67 @@
+<div class="container mt-5">
+
+  <button class="btn btn-success" (click)="openAddForm()">Add</button>
+
+  @if (showAddForm()) {
+    <div class="add-user-form mt-3 mb-3 p-3 border rounded">
+
+      <div class="mb-2">
+        <label>Username</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="newUser.username"
+          name="username"
+        />
+      </div>
+
+      <div class="mb-2">
+        <label>Password</label>
+        <input
+          type="password"
+          class="form-control"
+          [(ngModel)]="newUser.password"
+          name="password"
+        />
+      </div>
+
+      <div class="mb-2">
+        <label>Role</label>
+        <select class="form-control" [(ngModel)]="newUser.role" name="role">
+          <option value="ROLE_PARTICIPANT">Participant</option>
+          <option value="ROLE_JURY">Jury</option>
+          <option value="ROLE_ADMIN">Admin</option>
+        </select>
+      </div>
+
+      @if (addError()) {
+        <p class="text-danger">{{ addError() }}</p>
+      }
+
+      <button class="btn btn-primary" (click)="addUser()" [disabled]="isAdding()">
+        {{ isAdding() ? 'Ajout…' : 'Valider' }}
+      </button>
+      <button class="btn btn-secondary" (click)="closeAddForm()">Annuler</button>
+
+    </div>
+  }
+
+  <table class="table table-striped">
+    <tr>
+      <td>Username</td>
+      <td>Role</td>
+      <td>Actions</td>
+    </tr>
+
+    @for (a of users(); track a.id) {
+      <tr>
+        <td>{{ a.username }}</td>
+        <td>{{ a.role }}</td>
+        <td>
+          <button (click)="delete(a.id)" class="btn btn-danger">Delete</button>
+          <button class="btn btn-primary">Edit</button>
+        </td>
+      </tr>
+    }
+  </table>
+</div>

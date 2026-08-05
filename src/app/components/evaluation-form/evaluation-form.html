@@ -1,0 +1,47 @@
+<h2>Évaluer un projet</h2>
+
+@if (loading()) {
+  <p>Chargement...</p>
+} @else if (errorMessage() && !project()) {
+  <p class="error">{{ errorMessage() }}</p>
+  <button (click)="cancel()">Retour</button>
+} @else if (project()) {
+
+  <div class="evaluation-card">
+
+    <h3>{{ project()!.title }}</h3>
+    <p class="team-name">Équipe : {{ project()!.teamName }}</p>
+    <p>{{ project()!.description }}</p>
+
+    @if (project()!.githubLink) {
+      <a [href]="project()!.githubLink" target="_blank">Voir le dépôt</a>
+    }
+
+    <div class="form-group">
+      <label>
+        Note (/20)
+        <input type="number" min="0" max="20" [(ngModel)]="score" />
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Commentaire
+        <textarea [(ngModel)]="comment" rows="4"></textarea>
+      </label>
+    </div>
+
+    @if (errorMessage()) {
+      <p class="error">{{ errorMessage() }}</p>
+    }
+
+    <div class="form-actions">
+      <button (click)="submit()" [disabled]="submitting()">
+        {{ submitting() ? 'Enregistrement...' : 'Enregistrer' }}
+      </button>
+      <button (click)="cancel()" class="btn-secondary">Annuler</button>
+    </div>
+
+  </div>
+
+}

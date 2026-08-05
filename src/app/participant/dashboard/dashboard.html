@@ -1,0 +1,51 @@
+<div class="dashboard">
+
+
+
+
+  <div class="cards">
+
+    <div class="card">
+      <h2>Mon profil</h2>
+      <h1>
+        Bienvenue {{ participant()?.username || 'AUCUN NOM' }}
+      </h1>
+
+      <p>
+        ID : {{ participant()?.id }}
+      </p>
+
+      <p>
+        ROLE : {{ participant()?.role }}
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Mon équipe</h2>
+
+      @if (participant()?.team) {
+        <p>{{ participant()?.team?.nom }}</p>
+        <p>{{ participant()?.team?.description }}</p>
+        <button>Voir l'équipe</button>
+      } @else {
+        <p>Vous n'avez pas encore rejoint une équipe.</p>
+        <button (click)="joinTeam()">Rejoindre une équipe</button>
+      }
+    </div>
+
+    <div class="card">
+      <h2>Mon projet</h2>
+      <p>Aucun projet attribué pour le moment.</p>
+    </div>
+
+    <div class="card">
+      <h2>Notifications</h2>
+      <p>Aucune notification.</p>
+    </div>
+    <a routerLink="/participant/my-team">
+      Mon équipe
+    </a>
+
+  </div>
+
+</div>

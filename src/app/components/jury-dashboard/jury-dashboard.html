@@ -1,0 +1,49 @@
+<div class="page-header">
+  <h2>Projets à évaluer</h2>
+  <div class="header-actions">
+    <a routerLink="/jury/results" class="link-results">Voir les résultats</a>
+    <a routerLink="/leaderboard" class="btn btn-outline-primary btn-sm"><i class="bi bi-trophy-fill"></i> Voir classement</a>
+    <button class="btn-logout" (click)="logout()">Déconnexion</button>
+  </div>
+</div>
+
+@if (loading()) {
+  <p>Chargement...</p>
+} @else if (projects().length === 0) {
+  <p>Aucun projet à évaluer pour le moment.</p>
+} @else {
+
+  <table class="projects-table">
+    <thead>
+    <tr>
+      <th>Projet</th>
+      <th>Équipe</th>
+      <th>Statut</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (project of projects(); track project.id) {
+        <tr>
+          <td>{{ project.title }}</td>
+          <td>{{ project.teamName }}</td>
+          <td>
+            @if (project.alreadyEvaluated) {
+              <span class="badge-done"><i class="bi bi-check-circle-fill text-success"></i> Déjà noté</span>
+            } @else {
+              <span class="badge-pending">À évaluer</span>
+            }
+          </td>
+          <td>
+            @if (!project.alreadyEvaluated) {
+              <a [routerLink]="['/jury/evaluate', project.id]" class="btn-evaluate">
+                Évaluer
+              </a>
+            }
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+}

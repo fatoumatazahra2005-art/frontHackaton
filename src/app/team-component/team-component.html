@@ -1,0 +1,82 @@
+<div class="container mt-4">
+
+
+
+
+  <table class="table table-striped table-bordered">
+
+    <thead class="table-dark">
+
+    <tr>
+      <th>Nom</th>
+      <th>Chef</th>
+      <th>Actions</th>
+    </tr>
+
+    </thead>
+
+
+    <tbody>
+
+      @for (a of teams(); track a.id) {
+        <tr>
+          <td>{{ a.name }}</td>
+
+          <td>{{ a.createdBy }}</td>
+          <td>
+            <button (click)="openMembers(a)">
+              Voir membres
+            </button>
+          </td>
+        </tr>
+      }
+
+    </tbody>
+
+
+  </table>
+
+</div>
+
+
+@if (showModal() && selectedTeam()) {
+
+  <div class="modal-backdrop">
+
+    <div class="modal-box">
+
+      <h3>
+        Membres de {{ selectedTeam()?.name }}
+      </h3>
+
+
+      <ul>
+
+        @for (member of members(); track member.id) {
+
+          <li>
+            {{ member.username }}
+          </li>
+
+        }
+
+      </ul>
+
+
+      <button
+        class="btn btn-danger"
+        (click)="closeModal()">
+
+        Fermer
+
+      </button>
+
+
+    </div>
+
+  </div>
+
+}
+
+
+

@@ -1,0 +1,127 @@
+:host {
+  display: block;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  color: #1a1a2e;
+}
+
+.evaluation-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.75rem 2rem;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+
+.evaluation-card h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.3rem;
+  color: #1a1a2e;
+}
+
+.team-name {
+  color: #1565c0;
+  font-weight: 600;
+  margin: 0 0 1rem;
+}
+
+.evaluation-card > p {
+  color: #444;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.evaluation-card a {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  color: #1565c0;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #1565c0;
+}
+
+.form-group input[type="number"] {
+  width: 120px;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.error {
+  color: #c62828;
+  background: #fdecea;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.form-actions button {
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.form-actions button:first-child {
+  background-color: #1565c0;
+  color: white;
+}
+
+.form-actions button:first-child:hover:not(:disabled) {
+  background-color: #0d47a1;
+}
+
+.form-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background-color: #e0e0e0;
+}

@@ -1,0 +1,154 @@
+<table class="table">
+
+  <thead>
+
+  <tr>
+    <th>Titre</th>
+    <th>Description</th>
+    <th>GitHub</th>
+    <th>Action</th>
+  </tr>
+
+  </thead>
+
+
+  <tbody>
+
+    @for(project of projects(); track project.id) {
+
+
+      <tr>
+
+        <td>
+          {{project.title}}
+        </td>
+
+
+        <td>
+          {{project.description}}
+        </td>
+
+
+        <td>
+
+          @if(project.githubLink) {
+
+            <a
+              [href]="project.githubLink"
+              target="_blank">
+
+              GitHub
+
+            </a>
+
+          }
+
+        </td>
+
+
+
+        <td>
+
+          <button
+            class="btn btn-primary"
+            (click)="openDetails(project)">
+
+            Voir
+
+          </button>
+
+        </td>
+
+
+      </tr>
+
+
+    }
+
+  </tbody>
+
+</table>
+
+@if(showModal() && selectedProject()) {
+
+
+  <div class="modal-backdrop">
+
+
+    <div class="modal-box">
+
+
+      <h3>
+        {{selectedProject()?.title}}
+      </h3>
+
+
+      <p>
+        {{selectedProject()?.description}}
+      </p>
+
+
+
+      @if(selectedProject()?.githubLink) {
+
+        <a
+          [href]="selectedProject()?.githubLink"
+          target="_blank">
+
+          Voir Github
+
+        </a>
+
+      }
+
+
+      <hr>
+
+      <h4>Équipe</h4>
+
+      @if(isLoadingTeam()) {
+
+        <p>Chargement de l'équipe…</p>
+
+      } @else if(teamError()) {
+
+        <p class="error-message">{{ teamError() }}</p>
+
+      } @else if(projectTeam()) {
+
+        <p>
+          {{ projectTeam()!.teamName }}
+          — créée par <strong>{{ projectTeam()!.createdBy }}</strong>
+        </p>
+
+        <h4>Membres</h4>
+
+        @if(projectTeam()!.members.length === 0) {
+          <p>Aucun membre.</p>
+        } @else {
+          <ul>
+            @for(member of projectTeam()!.members; track member.id) {
+              <li>{{ member.username }}</li>
+            }
+          </ul>
+        }
+
+      }
+
+
+      <button
+        class="btn btn-danger"
+        (click)="closeModal()">
+
+        Fermer
+
+      </button>
+
+
+    </div>
+
+
+  </div>
+
+
+}

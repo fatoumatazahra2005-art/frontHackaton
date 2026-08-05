@@ -1,0 +1,66 @@
+<div class="container">
+
+  <h2>Rejoindre une équipe</h2>
+
+  <div class="create-team-block">
+    @if (!showCreateForm) {
+      <button (click)="showCreateForm = true">
+        Créer une équipe
+      </button>
+    } @else {
+      <div class="create-team-form">
+        <input
+          type="text"
+          [(ngModel)]="teamName"
+          placeholder="Nom de l'équipe"
+        />
+        <button (click)="createTeam()" [disabled]="!teamName.trim()">
+          Valider
+        </button>
+        <button (click)="showCreateForm = false; teamName = ''; createTeamError.set(null)">
+          Annuler
+        </button>
+
+        @if (createTeamError()) {
+          <p class="error-message">{{ createTeamError() }}</p>
+        }
+      </div>
+    }
+  </div>
+
+  @if (isLoading()) {
+
+    <p>Chargement...</p>
+
+  } @else {
+
+    @if (teams().length === 0) {
+
+      <p>Aucune équipe disponible.</p>
+
+    } @else {
+
+      @for (team of teams(); track team.id) {
+
+        <div class="team-card">
+
+          <h3>{{ team.name }}</h3>
+
+          <p>
+            Chef d'équipe :
+            <strong>{{ team.createdBy }}</strong>
+          </p>
+
+          <button (click)="join(team.id)">
+            Rejoindre cette équipe
+          </button>
+
+        </div>
+
+      }
+
+    }
+
+  }
+
+</div>

@@ -1,0 +1,33 @@
+<div class="results-header">
+  <a routerLink="/jury" class="back-link">
+    <i class="bi bi-arrow-left"></i> Retour
+  </a>
+  <h2>Résultats</h2>
+</div>
+
+@if (loading()) {
+  <p>Chargement...</p>
+} @else if (results().length === 0) {
+  <p>Aucune évaluation pour le moment.</p>
+} @else {
+
+  <table class="results-table">
+    <thead>
+    <tr>
+      <th>Équipe</th>
+      <th>Projet</th>
+      <th>Note</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (r of results(); track r.projectId) {
+        <tr>
+          <td>{{ r.teamName }}</td>
+          <td>{{ r.projectTitle }}</td>
+          <td>{{ r.averageScore | number:'1.0-2' }} / 20</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+}
